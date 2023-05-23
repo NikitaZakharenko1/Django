@@ -31,4 +31,3 @@ class Place(models.Model):
     quantity = models.DecimalField(max_digits=6, decimal_places=3)
     def __str__(self):
         return self.pharmacy.name + '/' + self.cure.name + '(' + str(self.quantity) + ')'
-#g
