@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang = "ru">
+
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{% static 'aboutme.css' %}">
+<title> Захаренко Никита Денисович </title>
+</head>
+
+<body>
+
+<header>
+<ul class="nav">
+            <li><a href="Отдых.html">Отдых</a></li>
+            <li><a href="Учёба.html">Учёба</a></li>
+            <li><a href="Биография.html">Обо мне</a></li>
+</ul></br></br></br>
+
+<figure class="ramka">
+    <img src="{% static 'фото.jfif' %}">
+    <figcaption>Захаренко Никита Денисович</figcaption>
+</figure>
+</header>
+
+<main>
+<section>
+<h2> Биография </h2>
+
+<p> Дата рождения - 10.06.2003 </p>
+<p> Окончил Школу - МАОУ СОШ №85 </p>
+<p> Буква класса - Б </p>
+<p> Год окончания - 2021 </p>
+</section>
+
+<section>
+<h2> Увлечения </h2>
+ <ul class="spisok">
+  <li> Волейбол </li>
+  <li> Чтение книг </li>
+  <li> Киберспорт </li>
+ </ul>
+</section>
+
+<section>
+<h2> Цитаты из книг </h2>
+<h3> Жюль Верн "Таинственный остров" </h3>
+<p><q>Впрочем, известно, что необходимость – лучший учитель, которого к тому же все прекрасно слушаются.</q></p>
+
+<h3> Виктор Франкл "Сказать жизни «Да!»: психолог в концлагере" </h3>
+<p><q>Человек всегда и везде противостоит судьбе, и это противостояние дает ему возможность превратить свое страдание во внутреннее достижение.</q></p>
+
+<h3> Дейл Карнеги "Как завоёвывать друзей и оказывать влияние на людей" </h3>
+<p><q>Будьте хорошим слушателем. Поощряйте других говорить о самих себе. </q></p>
+</section>
+
+<section>
+<h2> Успеваемость </h2>
+
+<table cellspacing = "0" border = "1.2">
+ <tr>
+    <th bgcolor = "#aadc32" align="center" > Предмет </th>
+    <th bgcolor = "#aadc32" > Семестр </th>
+    <th bgcolor = "#aadc32" > Оценка </th>
+ </tr>
+ <tr>
+    <td> Информационные угрозы </td> <td rowspan="3" align="center"> 1 </td> <td align="center" > 5 </td>
+ </tr>
+ <tr>
+    <td> Математика </td>  <td align="center"> 4 </td>
+ </tr>
+ <tr>
+    <td> Основы управления проектами </td>  <td align="center" > 5 </td>
+ </tr>
+
+ <tr>
+    <td> Технологии и методы программирования </td> <td rowspan="4" align="center"> 2 </td> <td align="center"> 5 </td>
+ </tr>
+ <tr>
+    <td> Основы информатики, организации ЭВМ, вычислительных и информационных систем </td>  <td align="center"> 4 </td>
+ </tr>
+ <tr>
+    <td>Классификация защищаемой информации и информационных систем </td>  <td align="center"> 4 </td>
+ </tr>
+ <tr>
+    <td> История (история России, всеобщая история) </td>  <td align="center"> 5 </td>
+ </tr>
+
+ <tr>
+    <td> Физика </td> <td rowspan="3" align="center"> 3 </td> <td align="center"> 5 </td>
+ </tr>
+ <tr>
+    <td> Основы информационной безопасности </td>  <td align="center"> 5 </td>
+ </tr>
+ <tr>
+    <td> Нормативные требования по защите информации </td>  <td align="center"> 5 </td>
+ </tr>
+</table>
+</section>
+</main>
+
+<footer>
+<ul class="link">
+   <li><a href = "mailto:nik.zakharenko.1999@mail.ru" target = "_blank" > mail.ru </a></li>
+   <li><a href = " tel: +79000531706 " target = "_blank" class = "nomer" > +7-900-053-17-06 </a></li>
+   <li><a href = " https://t.me/secondleague " target = "_blank" > telegram </a></li>
+  </ul>
+</footer>

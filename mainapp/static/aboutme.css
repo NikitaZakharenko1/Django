@@ -1,0 +1,128 @@
+/*Оформление текста*/
+   body{
+        font-family:Helvetica;
+        font-size:15px;
+       }
+   q {
+    font-family: Times, serif;
+    font-style: italic;
+    color: #008;
+     }
+   h1{
+     font-weight: normal;
+     }
+    p{
+      text-indent: 17px;
+      font-style: italic;
+      font-weight: bold;
+      margin-left:500px;
+     }
+     h3{
+     text-indent: 10px;
+     margin-left:500px;
+     }
+     h2{
+     position: relative;
+     margin-left:500px;
+     margin-top: 30px;
+     text-align: center;
+     border: 3px inset black;
+     padding:7px;
+     background-color: #9999CC;
+     border-top-left-radius: 4px;
+     border-top-right-radius: 4px;
+     border-bottom-right-radius: 4px;
+     border-bottom-left-radius: 4px;
+     }
+     .spisok{
+             left: 500px;
+             position: relative;
+            }
+
+ /*Оформление таблицы*/
+     table{font-style: italic;
+           left:510px;
+           margin-top:10px;
+           font-weight: bold;
+           width=900;
+           position: relative;
+          }
+      ul{
+          font-style: italic;
+          font-weight: bold;
+          margin-right: 500px;
+        }
+      footer{text-align: right;}
+
+/*Оформление навигации*/
+             ul.nav{
+                position: relative;
+                margin-right: 256px;
+                }
+            .nav li {
+                float: right;
+                list-style: none;
+                }
+            ul.nav a {
+                display: block;
+                width: 259px;
+                padding:15px;
+                margin: 3px;
+                background-color: #f4f4f4;
+                border: 2px double black;
+                text-decoration: none;
+                color: #333;
+                text-align: center;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+                border-bottom-left-radius: 4px;
+                }
+             ul.nav a:hover{
+                background-color: #9999CC;
+                color: #f4f4f4;
+                }
+
+/*Оформление фото*/
+.ramka {
+  position: absolute;
+  width: 400px;
+  margin: 40px auto 0;
+  background: white;
+  padding: 30px;
+  margin-left: 40px;
+  margin-top: 150px;
+}
+.ramka img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.ramka figcaption
+{
+  padding: 7px;
+  color: black;
+  font-style: italic;
+  font-weight: bold;
+  margin: 1px;
+  margin-right: 68px;
+  margin-left: 0px;
+  background: #9999CC;
+  text-align:center;
+  text-transform: uppercase;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+ /*Оформление ссылок*/
+   ul.link {
+    padding: 4px;
+    position: relative;
+    left: 500px;
+   }
