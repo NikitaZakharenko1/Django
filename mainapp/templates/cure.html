@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    <h1> Местонахождение лекарства: {{cure.name}} </h1>
+{% endblock %}
+
+{% block page_content %}
+    <table>
+        {% for p in cure.pharmacies.all %}
+            <tr>
+                <td>{{p.name}}</td>
+                <td>{{p.street}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="#"> Изменить местонахождение лекарства </a>
+{% endblock %}
