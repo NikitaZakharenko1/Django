@@ -35,7 +35,7 @@ def cure(request,dk):
     template = loader.get_template('cure.html')
     context = {
         'cure' : cure,
-        'title': 'Список лекарств'
+        'title': cure.name
     }
     return HttpResponse(template.render(context, request))
 

@@ -6,10 +6,11 @@
 
 {% block page_content %}
     <table>
-        {% for p in cure.pharmacies.all %}
+        {% for p in cure.place_set.all %}
             <tr>
-                <td>{{p.name}}</td>
-                <td>{{p.street}}</td>
+                <td>{{p.pharmacy.name}}</td>
+                <td>{{p.pharmacy.street}}</td>
+                <td>{{p.quantity}}</td>
             </tr>
         {% endfor %}
     </table>
