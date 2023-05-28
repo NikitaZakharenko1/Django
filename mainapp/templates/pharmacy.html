@@ -10,11 +10,19 @@
             <tr>
                 <td>{{p.name}}</td>
                 <td>{{p.street}}</td>
-                <td><a href="{% url 'edit_pharmacy' p.id %}"> Изменить </a></td>
-                <td><a href="{% url 'del_pharmacy' p.id %}"> Удалить </a></td>
+                {% if request.user.is_authenticated %}
+                    <td><a href="{% url 'edit_pharmacy' p.id %}"> Изменить </a></td>
+                    {% if power_user %}
+                        <td><a href="{% url 'del_pharmacy' p.id %}"> Удалить </a></td>
+                    {% endif %}
+                {% endif %}
             </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="{% url 'new_pharmacy' %}"> Добавить аптеку </a>
+    {% if request.user.is_authenticated %}
+        {% if power_user %}
+            <a href="{% url 'new_pharmacy' %}"> Добавить аптеку </a>
+        {% endif %}
+    {% endif %}
 {% endblock %}
