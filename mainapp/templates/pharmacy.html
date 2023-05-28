@@ -10,11 +10,11 @@
             <tr>
                 <td>{{p.name}}</td>
                 <td>{{p.street}}</td>
-                <td><a href="#"> Изменить </a></td>
-                <td><a href="#"> Удалить </a></td>
+                <td><a href="{% url 'edit_pharmacy' p.id %}"> Изменить </a></td>
+                <td><a href="{% url 'del_pharmacy' p.id %}"> Удалить </a></td>
             </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="#"> Добавить аптеку </a>
+    <a href="{% url 'new_pharmacy' %}"> Добавить аптеку </a>
 {% endblock %}
