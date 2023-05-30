@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    <h1> Улицы </h1>
+{% endblock %}
+
+{% block page_content %}
+    <table>
+        {% for s in streets %}
+            <tr>
+                <td>{{s.name}}</td>
+                <td>{{s.city}}</td>
+                {% if request.user.is_authenticated %}
+                    <td><a href="#"> Изменить </a></td>
+                    {% if power_user %}
+                        <td><a href="#"> Удалить </a></td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    {% if request.user.is_authenticated %}
+        {% if power_user %}
+            <a href="#"> Добавить улицу </a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

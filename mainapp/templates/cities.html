@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    <h1> Города </h1>
+{% endblock %}
+
+{% block page_content %}
+    <table>
+        {% for d in cities %}
+            <tr>
+                <td>{{d.name}}</td>
+                {% if request.user.is_authenticated %}
+                    <td><a href="#"> Изменить </a></td>
+                    {% if power_user %}
+                        <td><a href="#"> Удалить </a></td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    {% if request.user.is_authenticated %}
+        {% if power_user %}
+            <a href="{% url 'new_pharmacy' %}"> Добавить город </a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

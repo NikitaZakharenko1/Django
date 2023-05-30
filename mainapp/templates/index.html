@@ -8,10 +8,17 @@
 
 <body>
     {% include 'user_block.html' %}
-    <h1>Изучаем Django</h1>
-    <p>Привет ИБс-211</p>
+    <h1>База данных местонахождения лекарств</h1>
+    <br>
+    <a href="{% url 'cities' %}"> Города </a>
+    <br>
+    <a href="{% url 'streets' %}"> Улицы </a>
     <br>
     <a href="{% url 'pharmacies' %}"> Аптеки </a>
+    <br>
+    <a href="{% url 'place' %}"> Места </a>
+    <br>
     <a href="{% url 'cures' %}"> Лекарства </a>
+    <br>
 </body>
 </html>

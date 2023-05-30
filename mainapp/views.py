@@ -15,6 +15,24 @@ def index(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+def cities(request):
+    template = loader.get_template('cities.html')
+    context = {
+        'cities' : City.objects.all(),
+        'title': 'Список Городов',
+        'power_user': request.user.groups.filter(name='admin').exists(),
+    }
+    return HttpResponse(template.render(context, request))
+
+def streets(request):
+    template = loader.get_template('streets.html')
+    context = {
+        'streets' : Street.objects.all(),
+        'title': 'Список улиц',
+        'power_user': request.user.groups.filter(name='admin').exists()
+    }
+    return HttpResponse(template.render(context, request))
+
 def pharmacy(request):
     template = loader.get_template('pharmacy.html')
     context = {
@@ -34,6 +52,15 @@ def cure(request,dk):
     context = {
         'cure' : cure,
         'title': cure.name
+    }
+    return HttpResponse(template.render(context, request))
+
+def place(request):
+    template = loader.get_template('place.html')
+    context = {
+        'place' : Place.objects.all(),
+        'title': 'Список количества лекарства',
+        'power_user': request.user.groups.filter(name='admin').exists()
     }
     return HttpResponse(template.render(context, request))
 
