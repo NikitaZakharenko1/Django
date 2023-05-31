@@ -8,8 +8,8 @@
     <table>
         {% for s in streets %}
             <tr>
-                <td>{{s.name}}</td>
-                <td>{{s.city}}</td>
+                <td>г. {{s.city}}</td>
+                <td>ул.{{s.name}}</td>
                 {% if request.user.is_authenticated %}
                     <td><a href="#"> Изменить </a></td>
                     {% if power_user %}

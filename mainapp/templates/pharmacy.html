@@ -8,8 +8,8 @@
     <table>
         {% for p in pharmacies %}
             <tr>
+                <td>ул.{{p.street}}</td>
                 <td>{{p.name}}</td>
-                <td>{{p.street}}</td>
                 {% if request.user.is_authenticated %}
                     <td><a href="{% url 'edit_pharmacy' p.id %}"> Изменить </a></td>
                     {% if power_user %}

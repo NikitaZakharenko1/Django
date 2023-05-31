@@ -8,17 +8,11 @@
 
 <body>
     {% include 'user_block.html' %}
-    <h1>База данных местонахождения лекарств</h1>
-    <br>
-    <a href="{% url 'cities' %}"> Города </a>
-    <br>
-    <a href="{% url 'streets' %}"> Улицы </a>
-    <br>
-    <a href="{% url 'pharmacies' %}"> Аптеки </a>
-    <br>
-    <a href="{% url 'place' %}"> Места </a>
-    <br>
-    <a href="{% url 'cures' %}"> Лекарства </a>
-    <br>
+    <h1>База данных местонахождения лекарств в городах</h1>
+    <p><a href="{% url 'cities' %}"> Списо городов </a></p>
+    <p><a href="{% url 'streets' %}"> Список улиц </a></p>
+    <p><a href="{% url 'pharmacies' %}"> Список аптек </a></p>
+    <p><a href="{% url 'place' %}"> Список лекарств и их количества  </a></p>
+    <p><a href="{% url 'cures' %}"> Местонахождение лекарств </a></p>
 </body>
 </html>

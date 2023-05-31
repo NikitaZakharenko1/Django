@@ -8,7 +8,7 @@
     <table>
         {% for d in cities %}
             <tr>
-                <td>{{d.name}}</td>
+                <td>г.{{d.name}} </td>
                 {% if request.user.is_authenticated %}
                     <td><a href="#"> Изменить </a></td>
                     {% if power_user %}
