@@ -10,9 +10,9 @@
             <tr>
                 <td>г.{{d.name}} </td>
                 {% if request.user.is_authenticated %}
-                    <td><a href="#"> Изменить </a></td>
+                    <td><a href="{% url 'edit_cities' d.id %}"> Изменить </a></td>
                     {% if power_user %}
-                        <td><a href="#"> Удалить </a></td>
+                        <td><a href="{% url 'del_cities' d.id %}"> Удалить </a></td>
                     {% endif %}
                 {% endif %}
             </tr>
@@ -21,7 +21,7 @@
     <br>
     {% if request.user.is_authenticated %}
         {% if power_user %}
-            <a href="{% url 'new_pharmacy' %}"> Добавить город </a>
+            <a href="{% url 'new_cities' %}"> Добавить город </a>
         {% endif %}
     {% endif %}
 {% endblock %}

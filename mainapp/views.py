@@ -76,7 +76,25 @@ def new_pharmacy(request):
         template = loader.get_template('pharmacy_form.html')
         context = {
             'form': form,
-            'title':'добавление аптеки'
+            'title':'Добавление аптеки'
+        }
+        return HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def new_cities(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = CityForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('cities'))
+        else:
+            form = CityForm()
+        template = loader.get_template('city_form.html')
+        context = {
+            'form': form,
+            'title':'Добавление города'
         }
         return HttpResponse(template.render(context,request))
     else:
@@ -103,6 +121,43 @@ def edit_pharmacy(request,kp):
             'title':'редактирование аптеки'
         }
         return  HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def edit_cities(request,kp):
+    if request.user.is_authenticated:
+        try:
+            city = City.objects.get(id=kp)
+        except City.DoesNotExist:
+            raise Http404("Город с кодом " + str(kp) + " не найдена")
+
+        if request.method == 'POST':
+            form = CityForm(request.POST, instance=city)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('cities'))
+        else:
+            form = CityForm(instance=city)
+
+        template = loader.get_template('city_form.html')
+        context = {
+            'form':form,
+            'title':'Редактирование города'
+        }
+        return HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def del_cities(request, kp):
+    if request.user.is_authenticated:
+        try:
+            city = City.objects.get(id=kp)
+        except City.DoesNotExist:
+            raise Http404("Город с кодом " + str(kp) + " не найдена")
+        m = f"Город {city.name} удалён"
+        city.delete()
+        messages.error(request,m)
+        return HttpResponseRedirect(reverse('cities'))
     else:
         return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
 
