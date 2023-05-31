@@ -11,3 +11,13 @@ class CityForm(ModelForm):
     class Meta:
         model = models.City
         fields = ['name']
+
+class StreetForm(ModelForm):
+    class Meta:
+        model = models.Street
+        fields = ['name','city']
+
+class PlaceForm(ModelForm):
+    class Meta:
+        model = models.Place
+        fields = ['cure','quantity']

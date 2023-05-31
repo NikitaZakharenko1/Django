@@ -82,6 +82,25 @@ def new_pharmacy(request):
     else:
         return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
 
+def new_street(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = StreetForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('streets'))
+        else:
+            form = StreetForm()
+        template = loader.get_template('street_form.html')
+        context = {
+            'form': form,
+            'title':'Добавление улицы'
+        }
+        return HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+
 def new_cities(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -95,6 +114,24 @@ def new_cities(request):
         context = {
             'form': form,
             'title':'Добавление города'
+        }
+        return HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def new_place(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PlaceForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('places'))
+        else:
+            form = PlaceForm()
+        template = loader.get_template('place_form.html')
+        context = {
+            'form': form,
+            'title':'Добавление'
         }
         return HttpResponse(template.render(context,request))
     else:
@@ -119,6 +156,54 @@ def edit_pharmacy(request,kp):
         context = {
             'form':form,
             'title':'редактирование аптеки'
+        }
+        return  HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def edit_place(request,kp):
+    if request.user.is_authenticated:
+        try:
+            place = Place.objects.get(id=kp)
+        except Place.DoesNotExist:
+            raise Http404("Аптека с кодом " + str(kp) + " не найдена")
+
+        if request.method == 'POST':
+            form = PlaceForm(request.POST, instance=place)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('places'))
+        else:
+            form = PlaceForm(instance=place)
+
+        template = loader.get_template('place_form.html')
+        context = {
+            'form':form,
+            'title':'Редактирование аптеки'
+        }
+        return  HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def edit_street(request,kp):
+    if request.user.is_authenticated:
+        try:
+            street = Street.objects.get(id=kp)
+        except Street.DoesNotExist:
+            raise Http404("Улица с кодом " + str(kp) + " не найдена")
+
+        if request.method == 'POST':
+            form = StreetForm(request.POST, instance=street)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('streets'))
+        else:
+            form = StreetForm(instance=street)
+
+        template = loader.get_template('street_form.html')
+        context = {
+            'form':form,
+            'title':'Редактирование улицы'
         }
         return  HttpResponse(template.render(context,request))
     else:
@@ -153,11 +238,37 @@ def del_cities(request, kp):
         try:
             city = City.objects.get(id=kp)
         except City.DoesNotExist:
-            raise Http404("Город с кодом " + str(kp) + " не найдена")
+            raise Http404("Город с кодом " + str(kp) + " не найден")
         m = f"Город {city.name} удалён"
         city.delete()
         messages.error(request,m)
         return HttpResponseRedirect(reverse('cities'))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def del_place(request, kp):
+    if request.user.is_authenticated:
+        try:
+            place = Place.objects.get(id=kp)
+        except Place.DoesNotExist:
+            raise Http404("Город с кодом " + str(kp) + " не найден")
+        m = f"Город {Place.name} удалён"
+        place.delete()
+        messages.error(request,m)
+        return HttpResponseRedirect(reverse('places'))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def del_street(request, kp):
+    if request.user.is_authenticated:
+        try:
+            street = Street.objects.get(id=kp)
+        except Street.DoesNotExist:
+            raise Http404("Улица с кодом " + str(kp) + " не найдена")
+        m = f"Улица {street.name} удалёна"
+        street.delete()
+        messages.error(request,m)
+        return HttpResponseRedirect(reverse('streets'))
     else:
         return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
 

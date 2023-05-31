@@ -11,9 +11,9 @@
                 <td>{{p.cure.name}}</td>
                 <td>Количество:{{p.quantity}} </td>
                 {% if request.user.is_authenticated %}
-                    <td><a href="#"> Изменить </a></td>
+                    <td><a href="{% url 'edit_place' p.id %}"> Изменить </a></td>
                     {% if power_user %}
-                        <td><a href="#"> Удалить </a></td>
+                        <td><a href="{% url 'del_place' p.id %}"> Удалить </a></td>
                     {% endif %}
                 {% endif %}
             </tr>
@@ -22,7 +22,7 @@
     <br>
     {% if request.user.is_authenticated %}
         {% if power_user %}
-            <a href="#"> Добавить лекарство</a>
+            <a href="{% url 'new_place' %}"> Добавить лекарство</a>
         {% endif %}
     {% endif %}
 {% endblock %}

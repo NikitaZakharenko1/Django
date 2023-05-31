@@ -21,7 +21,7 @@
     <br>
     {% if request.user.is_authenticated %}
         {% if power_user %}
-            <a href="{% url 'new_cities' %}"> Добавить город/ </a>
+            <a href="{% url 'new_cities' %}"> Добавить город </a>
         {% endif %}
     {% endif %}
 {% endblock %}
