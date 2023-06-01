@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block page_title %}
-    <h1> Список лекарств и их количество </h1>
+    <h1> Местоположение лекарств и их количество </h1>
 {% endblock %}
 
 {% block page_content %}
@@ -23,7 +23,8 @@
     <br>
     {% if request.user.is_authenticated %}
         {% if power_user %}
-            <a href="{% url 'new_place' %}"> Добавить лекарство</a>
+            <a href="{% url 'new_place' %}"> Добавить местоположение и количество</a>
         {% endif %}
     {% endif %}
+<p><a href="{% url 'index' %}"> < Назад </a> </p>
 {% endblock %}

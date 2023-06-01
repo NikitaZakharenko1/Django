@@ -88,7 +88,7 @@ def new_cures(request):
             form = CuresForm(request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect(reverse('cure'))
+                return HttpResponseRedirect(reverse('cures'))
         else:
             form = CuresForm()
         template = loader.get_template('cures.form.html')
@@ -344,7 +344,8 @@ def cures(request):
     template = loader.get_template('cures.html')
     context = {
         'cures' : Cure.objects.all(),
-        'title': 'Список лекарств'
+        'title': 'Список лекарств',
+        'power_user': request.user.groups.filter(name='admin').exists()
     }
     return HttpResponse(template.render(context, request))
 
@@ -359,7 +360,7 @@ def register_user(request):
     template = loader.get_template('user_form.html')
     context = {
         'form': form,
-        'title':'Создание пользоавтеля'
+        'title':'Создание пользователя'
     }
     return HttpResponse(template.render(context,request))
 

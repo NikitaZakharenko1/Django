@@ -8,12 +8,21 @@
     <table>
         {% for c in cures %}
             <tr>
-                <td><a href="{% url 'cure' c.id %}"> {{c.name}} </a></td>
-                <td><a href="{% url 'edit_cures' c.id %}"> Изменить </a></td>
-                <td><a href="{% url 'del_cures' c.id %}"> Удалить </a></td>
+                <td>{{c.name}}</td>
+                {% if request.user.is_authenticated %}
+                    <td><a href="{% url 'edit_cures' c.id %}"> Изменить </a></td>
+                    {% if power_user %}
+                        <td><a href="{% url 'del_cures' c.id %}"> Удалить </a></td>
+                    {% endif %}
+                {% endif %}
             </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="{% url 'new_cures' %}"> Добавить лекарство </a>
+    {% if request.user.is_authenticated %}
+        {% if power_user %}
+            <a href="{% url 'new_cures' %}"> Добавить лекарство </a>
+        {% endif %}
+    {% endif %}
+<p><a href="{% url 'index' %}"> < Назад </a> </p>
 {% endblock %}

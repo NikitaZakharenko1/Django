@@ -9,9 +9,7 @@
         {% for p in cure.place_set.all%}
             <tr>
                 <td>{{p.pharmacy.name}} - </td>
-                <td>{{p.city}} - </td>
                 <td>ул.{{p.pharmacy.street}} - </td>
-                <td>Количество:{{p.quantity}} </td>
             </tr>
         {% endfor %}
     </table>
