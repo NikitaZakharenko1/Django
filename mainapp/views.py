@@ -82,6 +82,24 @@ def new_pharmacy(request):
     else:
         return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
 
+def new_cures(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = CuresForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('cure'))
+        else:
+            form = CuresForm()
+        template = loader.get_template('cures.form.html')
+        context = {
+            'form': form,
+            'title':'Добавление лекарства'
+        }
+        return HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
 def new_street(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -125,7 +143,7 @@ def new_place(request):
             form = PlaceForm(request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect(reverse('places'))
+                return HttpResponseRedirect(reverse('place'))
         else:
             form = PlaceForm()
         template = loader.get_template('place_form.html')
@@ -134,6 +152,30 @@ def new_place(request):
             'title':'Добавление'
         }
         return HttpResponse(template.render(context,request))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def edit_cures(request,kp):
+    if request.user.is_authenticated:
+        try:
+            cure = Cure.objects.get(id=kp)
+        except Cure.DoesNotExist:
+            raise Http404("Лекарство с кодом " + str(kp) + " не найдена")
+
+        if request.method == 'POST':
+            form = CuresForm(request.POST, instance=cure)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse('cure'))
+        else:
+            form = CuresForm(instance=cure)
+
+        template = loader.get_template('cures.form.html')
+        context = {
+            'form':form,
+            'title':'Редактирование лекарства'
+        }
+        return  HttpResponse(template.render(context,request))
     else:
         return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
 
@@ -172,7 +214,7 @@ def edit_place(request,kp):
             form = PlaceForm(request.POST, instance=place)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect(reverse('places'))
+                return HttpResponseRedirect(reverse('place'))
         else:
             form = PlaceForm(instance=place)
 
@@ -252,10 +294,23 @@ def del_place(request, kp):
             place = Place.objects.get(id=kp)
         except Place.DoesNotExist:
             raise Http404("Город с кодом " + str(kp) + " не найден")
-        m = f"Город {Place.name} удалён"
+        m = f"Город {place} удалён"
         place.delete()
         messages.error(request,m)
-        return HttpResponseRedirect(reverse('places'))
+        return HttpResponseRedirect(reverse('place'))
+    else:
+        return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
+
+def del_cures(request, kp):
+    if request.user.is_authenticated:
+        try:
+            cure = Cure.objects.get(id=kp)
+        except Cure.DoesNotExist:
+            raise Http404("Лекарство с кодом " + str(kp) + " не найдено")
+        m = f"Лекарство {cure.name} удалёно"
+        cure.delete()
+        messages.error(request,m)
+        return HttpResponseRedirect(reverse('cures'))
     else:
         return HttpResponseForbidden("<h1>Доступ запрещён</h1>")
 

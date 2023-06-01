@@ -20,4 +20,9 @@ class StreetForm(ModelForm):
 class PlaceForm(ModelForm):
     class Meta:
         model = models.Place
-        fields = ['cure','quantity']
+        fields = ['pharmacy','cure','quantity']
+
+class CuresForm(ModelForm):
+    class Meta:
+        model = models.Cure
+        fields = ['name']

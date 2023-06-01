@@ -9,11 +9,11 @@
         {% for c in cures %}
             <tr>
                 <td><a href="{% url 'cure' c.id %}"> {{c.name}} </a></td>
-                <td><a href="#"> Изменить </a></td>
-                <td><a href="#"> Удалить </a></td>
+                <td><a href="{% url 'edit_cures' c.id %}"> Изменить </a></td>
+                <td><a href="{% url 'del_cures' c.id %}"> Удалить </a></td>
             </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="#"> Добавить лекарство </a>
+    <a href="{% url 'new_cures' %}"> Добавить лекарство </a>
 {% endblock %}
